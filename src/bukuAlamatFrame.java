@@ -256,6 +256,14 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        String tblNama = tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        String tblAlamat = tblModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String tblTelepon = tblModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        
+        txtNama.setText(tblNama);
+        txtAlamat.setText(tblAlamat);
+        txtTelepon.setText(tblTelepon);
     }//GEN-LAST:event_jTable1MouseClicked
 
     /**
