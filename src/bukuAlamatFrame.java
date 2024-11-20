@@ -186,6 +186,11 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                 "Nama", "Alamat", "Telepon"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -284,6 +289,19 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnTambahActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        
+        String tblNama = tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        String tblAlamat = tblModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String tblTelepon = tblModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        
+        txtNama.setText(tblNama);
+        txtAlamat.setText(tblNama);
+        txtTelepon.setText(tblNama);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
