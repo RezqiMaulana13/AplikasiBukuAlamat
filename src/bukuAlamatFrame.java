@@ -45,8 +45,8 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         txtAlamat = new javax.swing.JTextField();
         txtTelepon = new javax.swing.JTextField();
         btnTambah = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnUbah = new javax.swing.JButton();
+        btnHapus = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -77,19 +77,19 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 153, 255));
-        jButton2.setText("Ubah");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnUbah.setBackground(new java.awt.Color(51, 153, 255));
+        btnUbah.setText("Ubah");
+        btnUbah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnUbahActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(51, 153, 255));
-        jButton3.setText("Hapus");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnHapus.setBackground(new java.awt.Color(51, 153, 255));
+        btnHapus.setText("Hapus");
+        btnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnHapusActionPerformed(evt);
             }
         });
 
@@ -140,9 +140,9 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnTambah)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jButton2)))
+                                        .addComponent(btnUbah)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton3)
+                                .addComponent(btnHapus)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -169,8 +169,8 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(btnUbah)
+                    .addComponent(btnHapus)
                     .addComponent(btnBatal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jButton5))
@@ -186,11 +186,6 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                 "Nama", "Alamat", "Telepon"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -225,13 +220,44 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnUbahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUbahActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+         DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+         if(jTable1.getSelectedRowCount()==1){
+             String tblnama = txtNama.getText();
+             String tblalamat = txtAlamat.getText();
+             String tblTelepon = txtTelepon.getText();
+             
+             tblModel.setValueAt(tblnama, jTable1.getSelectedRow(), 0);
+             tblModel.setValueAt(tblalamat, jTable1.getSelectedRow(), 1);
+             tblModel.setValueAt(tblTelepon, jTable1.getSelectedRow(), 2);
+             
+             JOptionPane.showMessageDialog(this, "Berhasil Merubah Data");
+         }else{
+             if(jTable1.getRowCount()==0){
+                 JOptionPane.showMessageDialog(this, "Silahkan Pilih Data");
+             }else{
+                 JOptionPane.showMessageDialog(this, "Silad");
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+             }
+         }
+    }//GEN-LAST:event_btnUbahActionPerformed
+
+    private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        
+        if(jTable1.getSelectedRowCount()==1){
+            tblModel.removeRow(jTable1.getSelectedRow());
+        }else{
+            if(jTable1.getRowCount()==0){
+                JOptionPane.showMessageDialog(this, "Silahkan Pilih Data!");
+            }else{
+                JOptionPane.showMessageDialog(this, "Silahkan Pilih Databjghjhygjuyh");
+            }
+            
+        }
+    }//GEN-LAST:event_btnHapusActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -244,27 +270,20 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
 
     private void btnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTambahActionPerformed
         // Makasih BlackBox Ai
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        if (txtNama.getText(). trim(). equals("") || txtAlamat.getText(). trim(). equals("") || txtTelepon.getText(). trim().equals("")){
+        if (txtNama.getText(). equals("") || txtAlamat.getText(). equals("") || txtTelepon.getText(). equals("")){
             JOptionPane.showMessageDialog(null, "Data belum lengkap");
         }else{
-        model.addRow(new Object[]{txtNama.getText(), txtAlamat.getText(), txtTelepon.getText()});
-        JOptionPane.showMessageDialog(null, "Data berhasil ditambah!");
+            String data[] = {txtNama.getText(), txtAlamat.getText(), txtTelepon.getText()};
+            DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+            tblModel.addRow(data);
+            JOptionPane.showMessageDialog(this, "Data berhasil ditambah!");
+            
+            txtNama.setText("");
+            txtAlamat.setText("");
+            txtTelepon.setText("");
         }
-        reset();
-    }//GEN-LAST:event_btnTambahActionPerformed
-
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
-        String tblNama = tblModel.getValueAt(jTable1.getSelectedRow(), 0).toString();
-        String tblAlamat = tblModel.getValueAt(jTable1.getSelectedRow(), 1).toString();
-        String tblTelepon = tblModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
         
-        txtNama.setText(tblNama);
-        txtAlamat.setText(tblAlamat);
-        txtTelepon.setText(tblTelepon);
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_btnTambahActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,9 +322,9 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
+    private javax.swing.JButton btnHapus;
     private javax.swing.JButton btnTambah;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnUbah;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
