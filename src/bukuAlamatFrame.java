@@ -269,10 +269,10 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
              if(jTable1.getRowCount()==0){
                  JOptionPane.showMessageDialog(this, "Silahkan Pilih Data");
              }else{
-                 JOptionPane.showMessageDialog(this, "Silad");
+                 JOptionPane.showMessageDialog(this, "Sila");
 
              }
-         }
+          }
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
