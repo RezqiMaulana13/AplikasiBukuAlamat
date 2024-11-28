@@ -1,0 +1,3 @@
+Nama	Alamat	Telepon
+==============================
+adada	adaad	dadad

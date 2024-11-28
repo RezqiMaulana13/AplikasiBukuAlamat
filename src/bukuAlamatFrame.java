@@ -1,6 +1,9 @@
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.io.FileWriter;
+import java.io.IOException;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -47,8 +50,9 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         btnTambah = new javax.swing.JButton();
         btnUbah = new javax.swing.JButton();
         btnHapus = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnImport = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -68,6 +72,12 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         jLabel6.setText(":");
 
         jLabel8.setText(":");
+
+        txtAlamat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAlamatActionPerformed(evt);
+            }
+        });
 
         btnTambah.setBackground(new java.awt.Color(51, 153, 255));
         btnTambah.setText("Tambah");
@@ -93,11 +103,11 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setBackground(new java.awt.Color(51, 153, 255));
-        jButton5.setText("Ekspor");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnImport.setBackground(new java.awt.Color(51, 153, 255));
+        btnImport.setText("Import");
+        btnImport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnImportActionPerformed(evt);
             }
         });
 
@@ -109,13 +119,18 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(51, 153, 255));
+        jButton6.setText("Ekspor");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton5))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,18 +150,27 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtTelepon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtTelepon, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btnTambah)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnUbah)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnHapus)
+                                        .addComponent(btnHapus)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(btnUbah, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 158, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImport)
+                .addGap(83, 83, 83))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(502, Short.MAX_VALUE)
+                    .addComponent(jButton6)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,15 +193,22 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTambah)
-                    .addComponent(btnUbah)
                     .addComponent(btnHapus)
-                    .addComponent(btnBatal))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jButton5))
+                    .addComponent(btnBatal)
+                    .addComponent(btnUbah))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnImport)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(152, Short.MAX_VALUE)
+                    .addComponent(jButton6)
+                    .addGap(10, 10, 10)))
         );
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
 
+        jTable1.setBackground(new java.awt.Color(102, 153, 255));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -219,7 +250,7 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 11, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
 
         pack();
@@ -258,15 +289,47 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             if(jTable1.getRowCount()==0){
                 JOptionPane.showMessageDialog(this, "Silahkan Pilih Data!");
             }else{
-                JOptionPane.showMessageDialog(this, "Silahkan Pilih Databjghjhygjuyh");
+                JOptionPane.showMessageDialog(this, "Silahkan Pilih Salah Satu Untuk Dihapus!");
             }
             
         }
     }//GEN-LAST:event_btnHapusActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+         try {
+        // Tentukan lokasi dan nama file
+        String filePath = "buku_alamat.txt";
+        FileWriter writer = new FileWriter(filePath);
+        
+        // Tulis header kolom
+        writer.write("Nama\tAlamat\tTelepon\n");
+        writer.write("==============================\n");
+        
+        // Ambil model tabel
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        
+        // Iterasi melalui baris tabel
+        for (int i = 0; i < tblModel.getRowCount(); i++) {
+            String nama = tblModel.getValueAt(i, 0).toString();
+            String alamat = tblModel.getValueAt(i, 1).toString();
+            String telepon = tblModel.getValueAt(i, 2).toString();
+            
+            // Tulis data ke file
+            writer.write(nama + "\t" + alamat + "\t" + telepon + "\n");
+        }
+        
+        // Tutup writer
+        writer.close();
+        
+        // Tampilkan pesan sukses
+        JOptionPane.showMessageDialog(this, "Data berhasil diekspor ke " + filePath);
+        
+    } catch (IOException e) {
+        // Tangani kesalahan
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+    }//GEN-LAST:event_btnImportActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
@@ -299,9 +362,40 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
         String tblTelepon = tblModel.getValueAt(jTable1.getSelectedRow(), 2).toString();
         
         txtNama.setText(tblNama);
-        txtAlamat.setText(tblNama);
-        txtTelepon.setText(tblNama);
+        txtAlamat.setText(tblAlamat);
+        txtTelepon.setText(tblTelepon);
+   // reset();
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void txtAlamatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlamatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAlamatActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        try {
+        // Tentukan lokasi file
+        File file = new File("buku_alamat.txt");
+        
+        // Membaca file
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+        DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+        tblModel.setRowCount(0); // Kosongkan tabel sebelum mengimpor
+        
+        // Membaca file baris demi baris
+        while ((line = reader.readLine()) != null) {
+            String[] data = line.split("\t"); // Memisahkan data berdasarkan tab
+            tblModel.addRow(data); // Menambahkan data ke tabel
+        }
+        
+        reader.close();
+        JOptionPane.showMessageDialog(this, "Data berhasil diimpor dari " + file.getName());
+    } catch (IOException e) {
+        JOptionPane.showMessageDialog(this, "Error: " + e.getMessage());
+    }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -341,9 +435,10 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnHapus;
+    private javax.swing.JButton btnImport;
     private javax.swing.JButton btnTambah;
     private javax.swing.JButton btnUbah;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
