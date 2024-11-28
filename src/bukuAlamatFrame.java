@@ -230,7 +230,7 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 57, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,12 +267,15 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
              JOptionPane.showMessageDialog(this, "Berhasil Merubah Data");
          }else{
              if(jTable1.getRowCount()==0){
-                 JOptionPane.showMessageDialog(this, "Silahkan Pilih Data");
+                 JOptionPane.showMessageDialog(this, "Silahkan Pilih Data!");
              }else{
-                 JOptionPane.showMessageDialog(this, "Sila");
+                 JOptionPane.showMessageDialog(this, "Silahkan Pilih Data!");
 
              }
           }
+            txtNama.setText("");
+            txtAlamat.setText("");
+            txtTelepon.setText("");
     }//GEN-LAST:event_btnUbahActionPerformed
 
     private void btnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHapusActionPerformed
