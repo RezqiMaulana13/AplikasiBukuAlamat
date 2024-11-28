@@ -289,6 +289,9 @@ public class bukuAlamatFrame extends javax.swing.JFrame {
             }
             
         }
+            txtNama.setText("");
+            txtAlamat.setText("");
+            txtTelepon.setText("");
     }//GEN-LAST:event_btnHapusActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
